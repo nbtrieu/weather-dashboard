@@ -11,6 +11,10 @@
     color: white;
 }
 
+.list-group {
+    border-top: 1px solid gray;
+}
+
 h2, h3 {
     font-weight: 700;
 }

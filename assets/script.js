@@ -1,5 +1,6 @@
 let searchButton = document.getElementById('searchButton');
 let searchResult = document.getElementById('search-result');
+let historyList = document.getElementById('history');
 let citySpan = document.getElementById('city');
 let iconSpan = document.getElementsByClassName('icon');
 
@@ -13,22 +14,22 @@ let tempSpan1 = document.getElementById('temp1');
 let windSpan1 = document.getElementById('wind1');
 let humiditySpan1 = document.getElementById('humidity1');
 
-// let dateSpan0 = document.getElementById('date0');
+let dateSpan2 = document.getElementById('date2');
 let tempSpan2 = document.getElementById('temp2');
 let windSpan2 = document.getElementById('wind2');
 let humiditySpan2 = document.getElementById('humidity2');
 
-// let dateSpan0 = document.getElementById('date0');
+let dateSpan3 = document.getElementById('date3');
 let tempSpan3 = document.getElementById('temp3');
 let windSpan3 = document.getElementById('wind3');
 let humiditySpan3 = document.getElementById('humidity3');
 
-// let dateSpan0 = document.getElementById('date0');
+let dateSpan4 = document.getElementById('date4');
 let tempSpan4 = document.getElementById('temp4');
 let windSpan4 = document.getElementById('wind4');
 let humiditySpan4 = document.getElementById('humidity4');
 
-// let dateSpan0 = document.getElementById('date0');
+let dateSpan5 = document.getElementById('date5');
 let tempSpan5 = document.getElementById('temp5');
 let windSpan5 = document.getElementById('wind5');
 let humiditySpan5 = document.getElementById('humidity5');
@@ -59,6 +60,18 @@ searchButton.addEventListener('click', function (event) {
 
     let cityName = document.getElementById('city-name').value;
     
+    let searchArray = JSON.parse(window.localStorage.getItem('searchArray')) || [];
+    let newSearch = cityName;
+    searchArray.push(newSearch);
+    window.localStorage.setItem('searchArray', JSON.stringify(searchArray));
+    let historyButton = document.createElement('button');
+    historyButton.setAttribute('class', 'btn btn-secondary');
+    historyButton.setAttribute('type', 'button');
+    historyButton.style.marginBottom = '20px';
+    historyButton.innerHTML = newSearch;
+    historyList.appendChild(historyButton);
+    // historyButton.addEventListener('click', )
+    
     // let cityName = 'Irvine'; // for testing
     let geoApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=a25fa154a84c9369ad1575488ecc950c`;
 
@@ -87,8 +100,13 @@ searchButton.addEventListener('click', function (event) {
 
         // NEXT 5 DAY FORECAST
         // Day 1
-         let day1 = data.list[8].dt;
-         dateSpan1.textContent = dayjs().format('M/D/YYYY');
+        let day1 = data.list[8].dt;
+        // console.log(data.list[8]); // correct index and unix timestamp!
+        // console.log('tomorrow date in unix:')
+        // console.log(day1);
+        // console.log(typeof day1);
+        // console.log(dayjs.unix(day1).format('M/D/YYYY'));
+        dateSpan1.textContent = dayjs.unix(day1).format('M/D/YYYY');
 
         let tempKelvin1 = data.list[8].main.temp;
         let tempFahrenheit1 = ((tempKelvin1 - 273.15) * 1.8 + 32).toFixed(2);
@@ -100,6 +118,63 @@ searchButton.addEventListener('click', function (event) {
 
         humiditySpan1.textContent = data.list[8].main.humidity;
 
+        // Day 2
+        let day2 = data.list[16].dt;
+        dateSpan2.textContent = dayjs.unix(day2).format('M/D/YYYY');
+
+        let tempKelvin2 = data.list[16].main.temp;
+        let tempFahrenheit2 = ((tempKelvin2 - 273.15) * 1.8 + 32).toFixed(2);
+        tempSpan2.textContent = tempFahrenheit2;
+
+        let windMeterPerSecond2 = data.list[16].wind.speed;
+        let windMilesPerHour2 = (windMeterPerSecond2 * 2.237).toFixed(2);
+        windSpan2.textContent = windMilesPerHour2;
+
+        humiditySpan2.textContent = data.list[16].main.humidity;
+
+        // Day 3
+        let day3 = data.list[24].dt;
+        dateSpan3.textContent = dayjs.unix(day3).format('M/D/YYYY');
+
+        let tempKelvin3 = data.list[24].main.temp;
+        let tempFahrenheit3 = ((tempKelvin3 - 273.15) * 1.8 + 32).toFixed(2);
+        tempSpan3.textContent = tempFahrenheit3;
+
+        let windMeterPerSecond3 = data.list[24].wind.speed;
+        let windMilesPerHour3 = (windMeterPerSecond3 * 2.237).toFixed(2);
+        windSpan3.textContent = windMilesPerHour3;
+
+        humiditySpan3.textContent = data.list[24].main.humidity;
+
+        // Day 4
+        let day4 = data.list[32].dt;
+        dateSpan4.textContent = dayjs.unix(day4).format('M/D/YYYY');
+
+        let tempKelvin4 = data.list[32].main.temp;
+        let tempFahrenheit4 = ((tempKelvin4 - 273.15) * 1.8 + 32).toFixed(2);
+        tempSpan4.textContent = tempFahrenheit4;
+
+        let windMeterPerSecond4 = data.list[32].wind.speed;
+        let windMilesPerHour4 = (windMeterPerSecond4 * 2.237).toFixed(2);
+        windSpan4.textContent = windMilesPerHour4;
+
+        humiditySpan4.textContent = data.list[32].main.humidity;
+
+        // Day 5
+        let day5 = data.list[39].dt;
+        dateSpan5.textContent = dayjs.unix(day5).format('M/D/YYYY');
+
+        let tempKelvin5 = data.list[39].main.temp;
+        let tempFahrenheit5 = ((tempKelvin5 - 273.15) * 1.8 + 32).toFixed(2);
+        tempSpan5.textContent = tempFahrenheit5;
+
+        let windMeterPerSecond5 = data.list[39].wind.speed;
+        let windMilesPerHour5 = (windMeterPerSecond5 * 2.237).toFixed(2);
+        windSpan5.textContent = windMilesPerHour5;
+
+        humiditySpan5.textContent = data.list[39].main.humidity;
+
+
     })
     .catch(function (error) {
         console.log(error);
@@ -108,4 +183,10 @@ searchButton.addEventListener('click', function (event) {
     
     // unhide search result section
     searchResult.setAttribute('class', 'col-9 show');
+})
+
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+
+
 })
