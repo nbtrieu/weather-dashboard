@@ -1,3 +1,7 @@
+.weather-header {
+    background-image: linear-gradient(to right, #0093F7, #004575);
+}
+
 .hide {
     visibility: hidden;
 }
@@ -15,7 +19,7 @@
     border-top: 1px solid gray;
 }
 
-h2, h3 {
+h1, h2, h3 {
     font-weight: 700;
 }
 
