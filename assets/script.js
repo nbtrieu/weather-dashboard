@@ -70,7 +70,10 @@ searchButton.addEventListener('click', function (event) {
     historyButton.style.marginBottom = '20px';
     historyButton.innerHTML = newSearch;
     historyList.appendChild(historyButton);
-    // historyButton.addEventListener('click', )
+    historyButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        
+    })
     
     // let cityName = 'Irvine'; // for testing
     let geoApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=a25fa154a84c9369ad1575488ecc950c`;
@@ -98,6 +101,9 @@ searchButton.addEventListener('click', function (event) {
 
         humiditySpan0.textContent = data.list[0].main.humidity;
 
+        let wiconSrc0 = 'http://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '.png';
+        document.getElementById('wicon0').src = wiconSrc0;
+
         // NEXT 5 DAY FORECAST
         // Day 1
         let day1 = data.list[8].dt;
@@ -118,6 +124,9 @@ searchButton.addEventListener('click', function (event) {
 
         humiditySpan1.textContent = data.list[8].main.humidity;
 
+        let wiconSrc1 = 'http://openweathermap.org/img/wn/' + data.list[8].weather[0].icon + '.png';
+        document.getElementById('wicon1').src = wiconSrc1;
+
         // Day 2
         let day2 = data.list[16].dt;
         dateSpan2.textContent = dayjs.unix(day2).format('M/D/YYYY');
@@ -131,6 +140,9 @@ searchButton.addEventListener('click', function (event) {
         windSpan2.textContent = windMilesPerHour2;
 
         humiditySpan2.textContent = data.list[16].main.humidity;
+
+        let wiconSrc2 = 'http://openweathermap.org/img/wn/' + data.list[16].weather[0].icon + '.png';
+        document.getElementById('wicon2').src = wiconSrc2;
 
         // Day 3
         let day3 = data.list[24].dt;
@@ -146,6 +158,9 @@ searchButton.addEventListener('click', function (event) {
 
         humiditySpan3.textContent = data.list[24].main.humidity;
 
+        let wiconSrc3 = 'http://openweathermap.org/img/wn/' + data.list[24].weather[0].icon + '.png';
+        document.getElementById('wicon3').src = wiconSrc3;
+
         // Day 4
         let day4 = data.list[32].dt;
         dateSpan4.textContent = dayjs.unix(day4).format('M/D/YYYY');
@@ -159,6 +174,9 @@ searchButton.addEventListener('click', function (event) {
         windSpan4.textContent = windMilesPerHour4;
 
         humiditySpan4.textContent = data.list[32].main.humidity;
+
+        let wiconSrc4 = 'http://openweathermap.org/img/wn/' + data.list[32].weather[0].icon + '.png';
+        document.getElementById('wicon4').src = wiconSrc4;
 
         // Day 5
         let day5 = data.list[39].dt;
@@ -174,7 +192,8 @@ searchButton.addEventListener('click', function (event) {
 
         humiditySpan5.textContent = data.list[39].main.humidity;
 
-
+        let wiconSrc5 = 'http://openweathermap.org/img/wn/' + data.list[39].weather[0].icon + '.png';
+        document.getElementById('wicon5').src = wiconSrc5;
     })
     .catch(function (error) {
         console.log(error);
@@ -183,10 +202,4 @@ searchButton.addEventListener('click', function (event) {
     
     // unhide search result section
     searchResult.setAttribute('class', 'col-9 show');
-})
-
-searchButton.addEventListener('click', function (event) {
-    event.preventDefault();
-
-
 })
