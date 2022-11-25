@@ -1,18 +1,14 @@
-# User Story
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
+# Module 6 Challenge: Weather Dashboard
 
-# Acceptance Criteria
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
+## Description
 
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
+This weather dashboard application was built to allow users to search for any city in the US and view the weather forecast for today and the next 5 days.
 
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+## Usage
 
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
+To use this application, type in the name of any US city and click the Search button. The search history will be displayed on the left side bar. The user can click on any of their past searches to review the weather conditions of that city again.
+
+![Screenshot](./assets/images/screenshot-weather-dashboard.png)
+
+## Link to Deployed Application
+https://nbtrieu.github.io/weather-dashboard/
